@@ -15,17 +15,17 @@ CREATE TABLE oauth_users (username VARCHAR(255) NOT NULL, password VARCHAR(2000)
 
 Setup
 -----------------------
-1. Add the demo client as an OAuth Client with the following SQL statement
+1) Add the demo client as an OAuth Client with the following SQL statement
 
 ```sql
 INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("Batterii SSO", "ae033c5653e254aa8a0a53ed3c48e460", "http://localhost:8000/client.php");
 ```
 
-2. Fire up a PHP development server.
+2) Fire up a PHP development server.
 
 ``` php -S localhost:8000 ```
 
-3. Point your browser at http://localhost:8000/client.php
+3) Point your browser at http://localhost:8000/client.php
 
 
 Credit
