@@ -21,4 +21,19 @@
   
   // Add the "Authorization Code" grant type (this is where the oauth magic happens)
   $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
+
+  // configure your available scopes
+  $defaultScope = 'basic';
+  $supportedScopes = array(
+    'basic',
+    'postonwall',
+    'accessphonenumber' 
+  );
+  $memory = new OAuth2\Storage\Memory(array(
+    'default_scope' => $defaultScope,
+    'supported_scopes' => $supportedScopes
+  ));
+  $scopeUtil = new OAuth2\Scope($memory);
+
+  $server->setScopeUtil($scopeUtil);  
 ?>
