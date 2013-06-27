@@ -1,3 +1,4 @@
+<!-- This client is meant to simulate the "Batterii SSO Client". It is likely of no use. -->
 <html>
 <body>
   
