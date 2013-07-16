@@ -23,7 +23,7 @@ INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("Batt
 
 2) Fire up a PHP development server.
 
-``` php -S localhost:8000 ```
+``` php -S localhost:8000 -d date.timezone=UTC ```
 
 3) Point your browser at http://localhost:8000/client.php
 
