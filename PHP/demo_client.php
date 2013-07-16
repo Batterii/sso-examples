@@ -2,7 +2,7 @@
 <html>
 <body>
   
-  <h1>Simulated Batterii Server</h1>
+  <h1>Simulated Batterii System</h1>
 
 <?php
 
@@ -14,7 +14,7 @@ static $client_id = "Batterii SSO";
 static $client_secret = "ae033c5653e254aa8a0a53ed3c48e460";
 // Construct the redirect_uri and endpoint strings. The `http_host` should match the value added to the database. See README.md.
 static $http_host = "http://localhost:8000";
-$redirect_uri = $http_host . "/client.php";
+$redirect_uri = $http_host . "/demo_client.php";
 $token_endpoint = $http_host . "/token.php";
 $authorize_endpoint = $http_host . "/authorize.php";
 
@@ -35,7 +35,7 @@ if(!$auth_code) {
 <?php
 
 } else {
-  
+
 ?>
   <p>
     <strong>Authentication Code:</strong> <?php echo $auth_code; ?> <br>

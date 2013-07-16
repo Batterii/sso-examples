@@ -28,6 +28,32 @@ INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("Batt
 3) Point your browser at http://localhost:8000/client.php
 
 
+Overview
+-----------------------
+This project is meant to assist a developer who is writing an OAuth2 "server" that can integrate with the Batterii system.  The Batterii SSO (single sign-on) feature allows your system to authenticate users and authorize them to use your Batterii account.  During the login process the Batterii system will redirect users to your system for athenticating and authorizing access as well as obtaining user profile details.  The main endpoints in this example project are the same type of endpoints you would implement in your system.
+
+This project is not meant as a drop-in component to an existing PHP-based system.  The files contained in this example project are described below.
+
+#### authorize.php
+Example endpoint for the initial OAuth2 redirect.  Your system would implement an endpoint like this to handle the login process for end users.  After the user is authenticated by your system you would redirect the user back to the Batterii endpoint with the "authorization token" information in the redirect.
+
+Note: In our example we don't require a login for expediency during testing.
+
+#### token.php
+Example, endpoint to handle the token request.  This endpoint allows the Batterii service to request a long term token(s) based on the initial authorization token passed back in the authorize endpoint.  This endpoint is called directly by the Batterii servers.  The response is the actual access token that can then be used by Batterii to make the resource call.
+
+#### resource.php
+Example, endpoint for the user profile resource.  This is an example endpoint that returns user profile information for the user that is logged into Batterii.  This endpoint is called directly by the Batterii servers to obtain user profile information (eg, last name, first name).  The response would be the profile information formatted per the Batterii user profile specification.
+
+#### demo_client.php
+This is a simple OAuth2 "client" that can be used to test your OAuth2 server implementation.  This is simulating the same interactions that the Batterii system would use to integrate with your own OAuth2 services.
+
+#### index.php
+
+#### server.php
+This is included by the other services.  It supplies the basic OAuth2 functionality used in this OAuth2 example.
+
+
 Credit
 -----------------------
 This Batterii SSO Provider demo uses the library "[oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)", written by [Brent Shaffer](https://github.com/bshaffer). Parts of this demo were derived from Brent's [oauth2-demo-php](https://github.com/bshaffer/oauth2-demo-php).
