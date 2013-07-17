@@ -12,6 +12,7 @@ if (!$server->verifyResourceRequest($request)) {
 }
   
 $access_token = $request->request('access_token');
+error_log('Finding profile %s' % $access_token);
 $stmt = $dbconnection->prepare(sprintf('SELECT username, first_name, last_name, email FROM oauth_users AS U JOIN oauth_access_tokens AS T ON U.username=T.user_id WHERE T.access_token = :access_token'));
 $stmt->execute(array( 'access_token' => $access_token));
 if ($row = $stmt->fetch()) {
