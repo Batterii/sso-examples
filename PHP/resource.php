@@ -11,8 +11,11 @@ if (!$server->verifyResourceRequest($request)) {
     die;
 }
   
-$access_token = $request->request('access_token');
-error_log('Finding profile: ' . $access_token);
+$access_token = isset($_GET["access_token"]) ? $_GET["access_token"] : NULL;
+if (!$access_token) {
+   echo '{error: "Missing access token"}';
+   die;
+}
 $stmt = $dbconnection->prepare(sprintf('SELECT username, first_name, last_name, email FROM oauth_users AS U JOIN oauth_access_tokens AS T ON U.username=T.user_id WHERE T.access_token = :access_token'));
 $stmt->execute(array( 'access_token' => $access_token));
 if ($row = $stmt->fetch()) {
@@ -21,5 +24,6 @@ if ($row = $stmt->fetch()) {
                            'given_name' => $row['first_name'],
                            'family_name' => $row['last_name']));
 } else {
-    echo 'Failure!';
+    echo '{error: "No user found for this access token"}';
+    die;
 }
