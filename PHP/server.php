@@ -29,8 +29,9 @@
   $defaultScope = 'basic';
   $supportedScopes = array(
     'basic',
-    'postonwall',
-    'accessphonenumber' 
+    'profile',
+    'email',
+    'openid'
   );
   $memory = new OAuth2\Storage\Memory(array(
     'default_scope' => $defaultScope,
