@@ -11,7 +11,7 @@ if (!$server->verifyResourceRequest($request)) {
     die;
 }
   
-$access_token = isset($_GET["access_token"]) ? $_GET["access_token"] : NULL;
+$access_token = isset($_POST["access_token"]) ? $_POST["access_token"] : NULL;
 if (!$access_token) {
    echo '{error: "Missing access token"}';
    die;
