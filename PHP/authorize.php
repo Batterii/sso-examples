@@ -72,7 +72,7 @@ if (!$server->validateAuthorizeRequest($request, $response)) {
 		$first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
 		$last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
 		$data = array( 'username' => $username, 'first_name' => $first_name, 'last_name' => $last_name);
-        $stmt = $dbconnection->prepare(sprintf('INSERT INTO oauth_users (username, first_name, last_name, email) values (:username, :first_name, :last_name, :email)'));
+        $stmt = $dbconnection->prepare(sprintf('INSERT INTO oauth_users (username, first_name, last_name) values (:username, :first_name, :last_name)'));
         $stmt->execute($data);
 	} elseif (!!$_POST['delete_all']) {
         $stmt = $dbconnection->prepare(sprintf('DELETE from oauth_users'));
