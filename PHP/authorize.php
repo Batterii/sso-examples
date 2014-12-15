@@ -34,7 +34,7 @@ if (!$server->validateAuthorizeRequest($request, $response)) {
 				$stmt->execute(compact('client_id'));
 				$users_cnt = 0;
 				while($row = $stmt->fetch()) {  
-					echo '<label class="radio"><input type="radio" name="user_id" value="' . $row['username'] . '">' . $row['first_name'] . ' ' . $row['last_name'] . ' ' . $row['email'] . '</label>';
+					echo '<label class="radio"><input type="radio" name="user_id" value="' . $row['username'] . '">' . $row['first_name'] . ' ' . $row['last_name'] . '</label>';
 					$users_cnt++;
 				}  
 				if ($users_cnt <= 0) {
@@ -50,7 +50,6 @@ if (!$server->validateAuthorizeRequest($request, $response)) {
 			<input type="text" name="username" placeholder="username">
 			<input type="text" name="first_name" placeholder="first_name">
 			<input type="text" name="last_name" placeholder="last_name">
-			<input type="text" name="email" placeholder="email">
 			<input type="submit" name="new_user" value="New User">
 			<input type="submit" name="delete_all" value="Delete All Users">
 		</form>
@@ -72,9 +71,8 @@ if (!$server->validateAuthorizeRequest($request, $response)) {
 		$username = isset($_POST['username']) ? $_POST['username'] : '';
 		$first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
 		$last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
-		$email = isset($_POST['email']) ? $_POST['email'] : '';
-		$data = array( 'username' => $username, 'first_name' => $first_name, 'last_name' => $last_name, 'email' => $email);
-        $stmt = $dbconnection->prepare(sprintf('INSERT INTO oauth_users (username, first_name, last_name, email) values (:username, :first_name, :last_name, :email)'));
+		$data = array( 'username' => $username, 'first_name' => $first_name, 'last_name' => $last_name);
+        $stmt = $dbconnection->prepare(sprintf('INSERT INTO oauth_users (username, first_name, last_name) values (:username, :first_name, :last_name)'));
         $stmt->execute($data);
 	} elseif (!!$_POST['delete_all']) {
         $stmt = $dbconnection->prepare(sprintf('DELETE from oauth_users'));
