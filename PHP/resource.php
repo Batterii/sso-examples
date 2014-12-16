@@ -23,6 +23,6 @@ if ($row = $stmt->fetch()) {
                            'given_name' => $row['first_name'],
                            'family_name' => $row['last_name']));
 } else {
-    echo '{error: "No user found for this access token"}';
+    echo '{"error": "No user found for this access token"}';
     die;
 }
