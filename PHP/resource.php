@@ -13,7 +13,7 @@ if (!$server->verifyResourceRequest($request)) {
   
 $access_token = isset($_POST["access_token"]) ? $_POST["access_token"] : NULL;
 if (!$access_token) {
-   echo '{error: "Missing access token"}';
+   echo '{"error": "Missing access token"}';
    die;
 }
 $stmt = $dbconnection->prepare(sprintf('SELECT username, first_name, last_name FROM oauth_users AS U JOIN oauth_access_tokens AS T ON U.username=T.user_id WHERE T.access_token = :access_token'));
@@ -23,6 +23,6 @@ if ($row = $stmt->fetch()) {
                            'given_name' => $row['first_name'],
                            'family_name' => $row['last_name']));
 } else {
-    echo '{error: "No user found for this access token"}';
+    echo '{"error": "No user found for this access token"}';
     die;
 }
